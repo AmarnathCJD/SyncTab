@@ -45,7 +45,7 @@ const CounterApp = () => {
     return (
         <div
             style={{
-                background: "linear-gradient(to right, #FF416C, #FF4B2B)",
+                background: "#ccd5ff",
                 minHeight: "100vh",
                 display: "flex",
                 alignItems: "center",
@@ -55,7 +55,7 @@ const CounterApp = () => {
         >
             <div
                 style={{
-                    background: "#ffffff",
+                    background: "#e7bbe3",
                     padding: "2rem",
                     borderRadius: "0.5rem",
                     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -67,7 +67,7 @@ const CounterApp = () => {
                     style={{
                         fontSize: "2rem",
                         fontWeight: "bold",
-                        color: "#333",
+                        color: "#c884a6", 
                         margin: "0",
                     }}
                 >
@@ -77,7 +77,7 @@ const CounterApp = () => {
                     style={{
                         fontSize: "3rem",
                         fontWeight: "bold",
-                        color: "#3b82f6",
+                        color: "#23c9ff", 
                         margin: "1rem 0",
                     }}
                 >
@@ -93,7 +93,7 @@ const CounterApp = () => {
                 >
                     <button
                         style={{
-                            background: "#ef4444",
+                            background: "#7cc6fe", 
                             color: "#ffffff",
                             border: "none",
                             fontWeight: "bold",
@@ -103,14 +103,14 @@ const CounterApp = () => {
                             transition: "background-color 0.3s",
                         }}
                         onClick={handleIncrement}
-                        onMouseEnter={(e) => (e.target.style.background = "#dc2626")}
-                        onMouseLeave={(e) => (e.target.style.background = "#ef4444")}
+                        onMouseEnter={(e) => (e.target.style.background = "#23c9ff")} 
+                        onMouseLeave={(e) => (e.target.style.background = "#7cc6fe")}
                     >
                         Increment
                     </button>
                     <button
                         style={{
-                            background: "#3b82f6",
+                            background: "#c884a6",
                             color: "#ffffff",
                             border: "none",
                             fontWeight: "bold",
@@ -120,8 +120,8 @@ const CounterApp = () => {
                             transition: "background-color 0.3s",
                         }}
                         onClick={handleReset}
-                        onMouseEnter={(e) => (e.target.style.background = "#2563eb")}
-                        onMouseLeave={(e) => (e.target.style.background = "#3b82f6")}
+                        onMouseEnter={(e) => (e.target.style.background = "#e7bbe3")} 
+                        onMouseLeave={(e) => (e.target.style.background = "#c884a6")}
                     >
                         Reset
                     </button>
