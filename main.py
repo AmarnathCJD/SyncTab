@@ -19,7 +19,7 @@ async def ws_count(request: web.Request):
                 if prev_count != COUNT:
                     await resp.send(json.dumps({'count': COUNT}))
                     prev_count = COUNT
-                await asyncio.sleep(0.01)
+                await asyncio.sleep(0.005)
         return resp
     except ConnectionResetError:
         return resp
@@ -41,24 +41,7 @@ async def fetch_count(_):
     return web.json_response({'count': COUNT})
 
 async def index(request: web.Request):
-    async with aiohttp.ClientSession() as session:
-        print(request.path)  # Log the request path for debugging
-        try:
-            async with session.request(
-                request.method,
-                f'http://localhost:3000{request.path}',
-                headers=request.headers,
-                data=await request.read()
-            ) as response:
-                body = await response.read()
-                print(response.status)  # Log the response status for debugging
-                
-                return web.Response(text=body.decode(), status=response.status, headers=response.headers)
-            
-        except aiohttp.ClientError as e:
-            print(f"Error during request forwarding: {e}")
-            # Handle the error appropriately, e.g., return an error response
-            return web.Response(status=500, text="Internal Server Error")
+    web.Response(text="<API Server> Up and Running")
 
 app = web.Application()
 app.router.add_get('/api/ws', ws_count)
@@ -66,9 +49,6 @@ app.router.add_post('/api/increment', increment_count)
 app.router.add_post('/api/reset', reset_count)
 app.router.add_get('/api/fetch', fetch_count)
 app.router.add_get('/', index)
-
-# wildcard static
-app.router.add_get("/static/{path:.*}", index)
 
 cors = aiohttp_cors.setup(app, defaults={
     "*": aiohttp_cors.ResourceOptions(
