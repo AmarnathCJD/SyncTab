@@ -48,8 +48,9 @@ const CounterApp = () => {
                 background: "#BFC0C0",
                 minHeight: "100vh",
                 display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
                 alignItems: "center",
-                justifyContent: "center",
                 fontFamily: "'Arial', sans-serif",
                 padding: "20px",
             }}
@@ -62,6 +63,7 @@ const CounterApp = () => {
                     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                     textAlign: "center",
                     width: "300px",
+                    marginBottom: "20px",
                 }}
             >
                 <h1
