@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const BACK_END_URL = "http://localhost:5000";
+const currentHost = process.env.HOST || 'localhost';
+const BACK_END_URL = `http://${currentHost}:5000`;
 
 const CounterApp = () => {
     const [count, setCount] = useState(0);
