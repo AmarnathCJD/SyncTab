@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 const CounterApp = () => {
     const [count, setCount] = useState(0);
     const [pageInitReq, setPageInitReq] = useState(true);
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
     const BACK_END_URL = `http://${window.location.hostname}:5000`;
 
     useEffect(() => {
@@ -18,9 +19,15 @@ const CounterApp = () => {
     }, []);
 
     const handleIncrement = () => {
-        fetch(`${BACK_END_URL}/api/increment`, {
-            method: "POST",
-        });
+        if (!isButtonClicked) {
+            setIsButtonClicked(true);
+            fetch(`${BACK_END_URL}/api/increment`, {
+                method: "POST",
+            });
+            setTimeout(() => {
+                setIsButtonClicked(false);
+            }, 1000);
+        }
     };
 
     const handleReset = () => {
@@ -106,11 +113,10 @@ const CounterApp = () => {
                             cursor: "pointer",
                             transition: "background-color 0.3s",
                             border: "2px solid transparent",
+                            outline: "2px solid #2D3142", // Add outline
                             fontFamily: "'Arial', sans-serif",
                         }}
                         onClick={handleIncrement}
-                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFFFFF", e.target.style.color = "#4F5D75")}
-                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4F5D75", e.target.style.color = "#FFFFFF")}
                     >
                         Increment
                     </button>
@@ -125,11 +131,10 @@ const CounterApp = () => {
                             cursor: "pointer",
                             transition: "background-color 0.3s",
                             border: "2px solid transparent",
+                            outline: "2px solid #EF8354", // Add outline
                             fontFamily: "'Arial', sans-serif",
                         }}
                         onClick={handleReset}
-                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFFFFF", e.target.style.color = "#2D3142")}
-                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#2D3142", e.target.style.color = "#FFFFFF")}
                     >
                         Reset
                     </button>
