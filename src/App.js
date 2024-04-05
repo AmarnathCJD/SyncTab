@@ -45,20 +45,21 @@ const CounterApp = () => {
     return (
         <div
             style={{
-                background: "#ccd5ff",
+                background: "#BFC0C0",
                 minHeight: "100vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontFamily: "Arial, sans-serif",
+                fontFamily: "'Arial', sans-serif",
+                padding: "20px",
             }}
         >
             <div
                 style={{
-                    background: "#e7bbe3",
-                    padding: "2rem",
-                    borderRadius: "0.5rem",
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                    background: "#FFFFFF",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                     textAlign: "center",
                     width: "300px",
                 }}
@@ -67,8 +68,9 @@ const CounterApp = () => {
                     style={{
                         fontSize: "2rem",
                         fontWeight: "bold",
-                        color: "#c884a6", 
+                        color: "#2D3142",
                         margin: "0",
+                        marginBottom: "20px",
                     }}
                 >
                     Synced Counter
@@ -77,7 +79,7 @@ const CounterApp = () => {
                     style={{
                         fontSize: "3rem",
                         fontWeight: "bold",
-                        color: "#23c9ff", 
+                        color: "#EF8354",
                         margin: "1rem 0",
                     }}
                 >
@@ -93,35 +95,39 @@ const CounterApp = () => {
                 >
                     <button
                         style={{
-                            background: "#7cc6fe", 
-                            color: "#ffffff",
+                            background: "#4F5D75",
+                            color: "#FFFFFF",
                             border: "none",
                             fontWeight: "bold",
-                            padding: "0.75rem 1.5rem",
-                            borderRadius: "0.5rem",
+                            padding: "10px 20px",
+                            borderRadius: "5px",
                             cursor: "pointer",
                             transition: "background-color 0.3s",
+                            border: "2px solid transparent",
+                            fontFamily: "'Arial', sans-serif",
                         }}
                         onClick={handleIncrement}
-                        onMouseEnter={(e) => (e.target.style.background = "#23c9ff")} 
-                        onMouseLeave={(e) => (e.target.style.background = "#7cc6fe")}
+                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFFFFF", e.target.style.color = "#4F5D75")}
+                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#4F5D75", e.target.style.color = "#FFFFFF")}
                     >
                         Increment
                     </button>
                     <button
                         style={{
-                            background: "#c884a6",
-                            color: "#ffffff",
+                            background: "#2D3142",
+                            color: "#FFFFFF",
                             border: "none",
                             fontWeight: "bold",
-                            padding: "0.5rem 1rem",
-                            borderRadius: "0.5rem",
+                            padding: "10px 20px",
+                            borderRadius: "5px",
                             cursor: "pointer",
                             transition: "background-color 0.3s",
+                            border: "2px solid transparent",
+                            fontFamily: "'Arial', sans-serif",
                         }}
                         onClick={handleReset}
-                        onMouseEnter={(e) => (e.target.style.background = "#e7bbe3")} 
-                        onMouseLeave={(e) => (e.target.style.background = "#c884a6")}
+                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFFFFF", e.target.style.color = "#2D3142")}
+                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#2D3142", e.target.style.color = "#FFFFFF")}
                     >
                         Reset
                     </button>
