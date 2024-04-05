@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const CounterApp = () => {
     const [count, setCount] = useState(0);
-    var pageInitReq = true;
+    const [pageInitReq, setPageInitReq] = useState(true);
     const BACK_END_URL = `http://${window.location.hostname}:5000`;
 
     useEffect(() => {
@@ -34,13 +34,13 @@ const CounterApp = () => {
             const response = await fetch(`${BACK_END_URL}/api/fetch`);
             const data = await response.json();
             setCount(data.count);
-            pageInitReq = false;
+            setPageInitReq(false);
         }
     };
 
     useEffect(() => {
         fetchCount();
-    })
+    }, []);
 
     return (
         <div
