@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const currentHost = process.env.HOST || 'localhost';
-const BACK_END_URL = `http://${currentHost}:5000`;
-
 const CounterApp = () => {
     const [count, setCount] = useState(0);
     var pageInitReq = true;
+    const BACK_END_URL = `http://${window.location.hostname}:5000`;
 
     useEffect(() => {
-        const updater = new EventSource(BACK_END_URL + "/api/ws");
+        const updater = new EventSource(`${BACK_END_URL}/api/ws`);
         updater.onmessage = (event) => {
             const data = JSON.parse(event.data);
             setCount(data.count);
@@ -20,20 +18,20 @@ const CounterApp = () => {
     }, []);
 
     const handleIncrement = () => {
-        fetch(BACK_END_URL + "/api/increment", {
+        fetch(`${BACK_END_URL}/api/increment`, {
             method: "POST",
         });
     };
 
     const handleReset = () => {
-        fetch(BACK_END_URL + "/api/reset", {
+        fetch(`${BACK_END_URL}/api/reset`, {
             method: "POST",
         });
     };
 
     const fetchCount = async () => {
         if (pageInitReq) {
-            const response = await fetch(BACK_END_URL + "/api/fetch");
+            const response = await fetch(`${BACK_END_URL}/api/fetch`);
             const data = await response.json();
             setCount(data.count);
             pageInitReq = false;
@@ -47,40 +45,40 @@ const CounterApp = () => {
     return (
         <div
             style={{
-                backgroundColor: "#edf2f7",
-                height: "100vh",
+                background: "linear-gradient(to right, #FF416C, #FF4B2B)",
+                minHeight: "100vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                fontFamily: "Arial, sans-serif",
             }}
         >
             <div
                 style={{
-                    backgroundColor: "#ffffff",
-                    padding: "1.5rem",
+                    background: "#ffffff",
+                    padding: "2rem",
                     borderRadius: "0.5rem",
                     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                    fontFamily: "Roboto, sans-serif",
                     textAlign: "center",
                     width: "300px",
                 }}
             >
                 <h1
                     style={{
-                        fontSize: "1.5rem",
-                        fontWeight: "700",
-                        marginBottom: "1rem",
+                        fontSize: "2rem",
+                        fontWeight: "bold",
                         color: "#333",
+                        margin: "0",
                     }}
                 >
                     Synced Counter
                 </h1>
                 <p
                     style={{
-                        fontSize: "2.5rem",
-                        fontWeight: "700",
+                        fontSize: "3rem",
+                        fontWeight: "bold",
                         color: "#3b82f6",
-                        marginBottom: "1rem",
+                        margin: "1rem 0",
                     }}
                 >
                     {count}
@@ -95,39 +93,35 @@ const CounterApp = () => {
                 >
                     <button
                         style={{
-                            backgroundColor: "#ef4444",
+                            background: "#ef4444",
                             color: "#ffffff",
                             border: "none",
-                            fontWeight: "700",
+                            fontWeight: "bold",
                             padding: "0.75rem 1.5rem",
                             borderRadius: "0.5rem",
                             cursor: "pointer",
-                            transition:
-                                "background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
-                            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                            transition: "background-color 0.3s",
                         }}
                         onClick={handleIncrement}
-                        onMouseOver={(e) => (e.target.style.backgroundColor = "#dc2626")}
-                        onMouseOut={(e) => (e.target.style.backgroundColor = "#ef4444")}
+                        onMouseEnter={(e) => (e.target.style.background = "#dc2626")}
+                        onMouseLeave={(e) => (e.target.style.background = "#ef4444")}
                     >
                         Increment
                     </button>
                     <button
                         style={{
-                            backgroundColor: "#3b82f6",
+                            background: "#3b82f6",
                             color: "#ffffff",
                             border: "none",
-                            fontWeight: "700",
+                            fontWeight: "bold",
                             padding: "0.5rem 1rem",
                             borderRadius: "0.5rem",
                             cursor: "pointer",
-                            transition:
-                                "background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
-                            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                            transition: "background-color 0.3s",
                         }}
                         onClick={handleReset}
-                        onMouseOver={(e) => (e.target.style.backgroundColor = "#2563eb")}
-                        onMouseOut={(e) => (e.target.style.backgroundColor = "#3b82f6")}
+                        onMouseEnter={(e) => (e.target.style.background = "#2563eb")}
+                        onMouseLeave={(e) => (e.target.style.background = "#3b82f6")}
                     >
                         Reset
                     </button>
