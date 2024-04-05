@@ -104,16 +104,16 @@ const CounterApp = () => {
                 >
                     <button
                         style={{
-                            background: "#4F5D75",
-                            color: "#FFFFFF",
+                            background: isButtonClicked ? "#FFFFFF" : "#4F5D75",
+                            color: isButtonClicked ? "#4F5D75" : "#FFFFFF",
                             border: "none",
                             fontWeight: "bold",
                             padding: "10px 20px",
                             borderRadius: "5px",
                             cursor: "pointer",
-                            transition: "background-color 0.3s",
+                            transition: "background-color 0.3s, color 0.3s",
                             border: "2px solid transparent",
-                            outline: "2px solid #2D3142", // Add outline
+                            outline: "2px solid #2D3142",
                             fontFamily: "'Arial', sans-serif",
                         }}
                         onClick={handleIncrement}
@@ -131,7 +131,7 @@ const CounterApp = () => {
                             cursor: "pointer",
                             transition: "background-color 0.3s",
                             border: "2px solid transparent",
-                            outline: "2px solid #EF8354", // Add outline
+                            outline: "1px solid #EF8354",
                             fontFamily: "'Arial', sans-serif",
                         }}
                         onClick={handleReset}

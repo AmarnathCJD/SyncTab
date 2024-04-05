@@ -11,7 +11,7 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/build/index.html');
 });
 
-const PORT = 443;
+const PORT = 80;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
