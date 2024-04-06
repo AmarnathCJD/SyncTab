@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SendArrowUp, ArrowUpSquareFill } from 'react-bootstrap-icons';
+import { SendArrowUp, ArrowUpSquareFill } from "react-bootstrap-icons";
 
 const CounterApp = () => {
   const [count, setCount] = useState(0);
@@ -111,11 +111,19 @@ const CounterApp = () => {
             fontWeight: "bold",
             color: "#ef8354",
             margin: "1rem 0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {count} <span style={{ fontSize: "1rem", color: "#2d3142", fontWeight: "normal", alignSelf: "flex-end"
-            }}>+{latency}ms</span>
+          <span style={{ marginRight: "5px" }}>{count}</span>
+          <span
+            style={{ fontSize: "1rem", color: "#2d3142", fontWeight: "normal" }}
+          >
+            {latency && `(+${latency}ms)`}
+          </span>
         </p>
+
         <div
           style={{
             display: "flex",
@@ -126,6 +134,9 @@ const CounterApp = () => {
         >
           <button
             style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               background: isButtonClicked ? "#ffffff" : "#4f5d75",
               color: isButtonClicked ? "#4f5d75" : "#ffffff",
               border: "none",
@@ -140,9 +151,17 @@ const CounterApp = () => {
             }}
             onClick={handleIncrement}
           >
-            <ArrowUpSquareFill size={14} style={{ marginRight: "5px", marginTop: "5px", fill: isButtonClicked ? "#4f5d75" : "#ffffff" }} />
-            Increment
+            <ArrowUpSquareFill
+              size={14}
+              style={{
+                marginRight: "5px",
+                marginTop: "5px",
+                fill: isButtonClicked ? "#4f5d75" : "#ffffff",
+              }}
+            />
+            <span style={{ textAlign: "center" }}>Increment</span>
           </button>
+
           <button
             style={{
               background: "#2d3142",
@@ -166,13 +185,26 @@ const CounterApp = () => {
               type="checkbox"
               checked={autoIncrement}
               onChange={() => setAutoIncrement(!autoIncrement)}
-              style={{ transform: "scale(1.5)", marginRight: "5px", marginTop: "5px" }}
+              style={{
+                transform: "scale(1.5)",
+                marginRight: "5px",
+                marginTop: "5px",
+              }}
             />
-            <label style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#2d3142" }}>
+            <label
+              style={{
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+                color: "#2d3142",
+              }}
+            >
               Auto Increment
             </label>
           </div>
-          <SendArrowUp size={50} style={{ color: "#2d3142", fill: "#2d3142" }} />
+          <SendArrowUp
+            size={50}
+            style={{ color: "#2d3142", fill: "#2d3142" }}
+          />
         </div>
       </div>
     </div>
