@@ -106,10 +106,11 @@ const CounterApp = () => {
             color: "#2d3142",
             margin: "0",
             marginBottom: "20px",
+            fontFamily: "Poppins, sans-serif",
           }}
         >
-          <ArrowRepeat size={25} style={{ color: "#2d3142" }} />
-           Synced Counter
+          <ArrowRepeat size={30} style={{ color: "#2d3142" , marginRight: "10px"}} />
+           Sync Counter
         </h1>
         <p
           style={{
