@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineArrowUp, AiOutlineSync } from "react-icons/ai";
+import { ArrowUp, ArrowRepeat } from 'react-bootstrap-icons';
 
 const CounterApp = () => {
   const [count, setCount] = useState(0);
@@ -77,13 +77,13 @@ const CounterApp = () => {
   return (
     <div
       style={{
-        background: "#f0f2f5",
+        background: "#f8f9fa", // Changed background color
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
-        fontFamily: "'Arial', sans-serif",
+        fontFamily: "Arial, sans-serif",
         padding: "20px",
       }}
     >
@@ -139,11 +139,11 @@ const CounterApp = () => {
               transition: "background-color 0.3s, color 0.3s",
               border: "2px solid transparent",
               outline: "2px solid #2d3142",
-              fontFamily: "'Arial', sans-serif",
+              fontFamily: "Arial, sans-serif",
             }}
             onClick={handleIncrement}
           >
-            <AiOutlineArrowUp style={{ marginRight: "5px" }} />
+            <ArrowUp size={20} style={{ marginRight: "5px" }} />
             Increment
           </button>
           <button
@@ -158,7 +158,7 @@ const CounterApp = () => {
               transition: "background-color 0.3s",
               border: "2px solid transparent",
               outline: "1px solid #ef8354",
-              fontFamily: "'Arial', sans-serif",
+              fontFamily: "Arial, sans-serif",
             }}
             onClick={handleReset}
           >
@@ -169,13 +169,16 @@ const CounterApp = () => {
               type="checkbox"
               checked={autoIncrement}
               onChange={() => setAutoIncrement(!autoIncrement)}
+              style={{ transform: "scale(1.5)", marginRight: "5px" }}
             />
-            <label style={{ marginLeft: "5px" }}>Auto Increment</label>
+            <label style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#2d3142" }}>
+              Auto Increment
+            </label>
           </div>
           <p style={{ fontSize: "0.8rem", color: "#777" }}>
             Last Latency: {latency} ms
           </p>
-          <AiOutlineSync style={{ fontSize: "2rem", color: "#2d3142" }} />
+          <ArrowRepeat size={30} style={{ color: "#2d3142" }} />
         </div>
       </div>
     </div>
