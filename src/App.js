@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import {
   SendArrowUp,
   ArrowUpSquareFill,
-  SymmetryVertical,
   ArrowRepeat,
 } from "react-bootstrap-icons";
+
+require('dotenv').config();
+
 
 const CounterApp = () => {
   const [count, setCount] = useState(0);
@@ -13,7 +15,7 @@ const CounterApp = () => {
   const [autoIncrement, setAutoIncrement] = useState(false);
   const [latency, setLatency] = useState(0);
 
-  const BACK_END_URL = `https://gogramdocs-amarnathcjd.koyeb.app`;
+  const BACK_END_URL = process.env.BACK_END_URL || `http://localhost:5000`;
 
   useEffect(() => {
     const updater = new EventSource(`${BACK_END_URL}/api/ws`);
@@ -65,8 +67,7 @@ const CounterApp = () => {
   useEffect(() => {
     let intervalId;
     if (autoIncrement) {
-      // set button color to green
-
+    
       document.getElementById("incrementButton").style.backgroundColor =
         "#4f5d75";
       intervalId = setInterval(() => {
