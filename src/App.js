@@ -5,7 +5,7 @@ import {
   ArrowRepeat,
 } from "react-bootstrap-icons";
 
-require('dotenv').config();
+const Dotenv = require('dotenv-webpack');
 
 
 const CounterApp = () => {
