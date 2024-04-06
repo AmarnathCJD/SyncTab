@@ -4,7 +4,9 @@ const CounterApp = () => {
   const [count, setCount] = useState(0);
   const [pageInitReq, setPageInitReq] = useState(true);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const BACK_END_URL = `http://${window.location.hostname}:5000`;
+  //const BACK_END_URL = `http://${window.location.hostname}:5000`;
+
+  const BACK_END_URL = `https://gogramdocs-amarnathcjd.koyeb.app`
 
   useEffect(() => {
     const updater = new EventSource(`${BACK_END_URL}/api/ws`);
