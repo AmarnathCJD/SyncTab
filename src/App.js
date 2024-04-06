@@ -117,8 +117,8 @@ const CounterApp = () => {
             size={30}
             style={{
               color: "#2d3142",
-              marginRight: "10px",
-              marginTop: "3px",
+              marginRight: "8px",
+              marginTop: "6px",
               fill: "#2d3142",
             }}
           />
