@@ -65,6 +65,10 @@ const CounterApp = () => {
   useEffect(() => {
     let intervalId;
     if (autoIncrement) {
+      // set button color to green
+
+      document.getElementById("incrementButton").style.backgroundColor =
+        "#4f5d75";
       intervalId = setInterval(() => {
         handleIncrement();
       }, 1000);
@@ -109,8 +113,16 @@ const CounterApp = () => {
             fontFamily: "Poppins, sans-serif",
           }}
         >
-          <ArrowRepeat size={30} style={{ color: "#2d3142" , marginRight: "10px"}} />
-           Sync Counter
+          <ArrowRepeat
+            size={30}
+            style={{
+              color: "#2d3142",
+              marginRight: "10px",
+              marginTop: "3px",
+              fill: "#2d3142",
+            }}
+          />
+          Sync Counter
         </h1>
         <p
           style={{
@@ -163,6 +175,7 @@ const CounterApp = () => {
               fontFamily: "Arial, sans-serif",
             }}
             onClick={handleIncrement}
+            id="incrementButton"
           >
             <ArrowUpSquareFill
               size={14}
@@ -200,7 +213,7 @@ const CounterApp = () => {
               onChange={() => setAutoIncrement(!autoIncrement)}
               style={{
                 transform: "scale(1.5)",
-                marginRight: "5px",
+                marginRight: "8px",
                 marginTop: "5px",
               }}
             />
