@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { AiOutlineArrowUp, AiOutlineSync } from "react-icons/ai";
 
 const CounterApp = () => {
   const [count, setCount] = useState(0);
   const [pageInitReq, setPageInitReq] = useState(true);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  //const BACK_END_URL = `http://${window.location.hostname}:5000`;
+  const [autoIncrement, setAutoIncrement] = useState(false);
+  const [latency, setLatency] = useState(0);
 
-  const BACK_END_URL = `https://gogramdocs-amarnathcjd.koyeb.app`
+  const BACK_END_URL = `https://gogramdocs-amarnathcjd.koyeb.app`;
 
   useEffect(() => {
     const updater = new EventSource(`${BACK_END_URL}/api/ws`);
@@ -24,10 +26,10 @@ const CounterApp = () => {
     setIsButtonClicked(true);
     fetch(`${BACK_END_URL}/api/increment`, {
       method: "POST",
-    });
-    setTimeout(() => {
+    }).then(() => {
       setIsButtonClicked(false);
-    }, 300);
+      updateLatency();
+    });
   };
 
   const handleReset = () => {
@@ -45,14 +47,37 @@ const CounterApp = () => {
     }
   };
 
+  const updateLatency = async () => {
+    const start = Date.now();
+    await fetch(`${BACK_END_URL}/api/increment`, {
+      method: "POST",
+    });
+    const end = Date.now();
+    const currentLatency = end - start;
+    setLatency(currentLatency);
+  };
+
   useEffect(() => {
     fetchCount();
   }, []);
 
+  useEffect(() => {
+    let intervalId;
+    if (autoIncrement) {
+      intervalId = setInterval(() => {
+        handleIncrement();
+      }, 1000);
+    } else {
+      clearInterval(intervalId);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [autoIncrement]);
+
   return (
     <div
       style={{
-        background: "#BFC0C0",
+        background: "#f0f2f5",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -64,7 +89,7 @@ const CounterApp = () => {
     >
       <div
         style={{
-          background: "#FFFFFF",
+          background: "#ffffff",
           padding: "20px",
           borderRadius: "10px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -77,7 +102,7 @@ const CounterApp = () => {
           style={{
             fontSize: "2rem",
             fontWeight: "bold",
-            color: "#2D3142",
+            color: "#2d3142",
             margin: "0",
             marginBottom: "20px",
           }}
@@ -88,7 +113,7 @@ const CounterApp = () => {
           style={{
             fontSize: "3rem",
             fontWeight: "bold",
-            color: "#EF8354",
+            color: "#ef8354",
             margin: "1rem 0",
           }}
         >
@@ -104,8 +129,8 @@ const CounterApp = () => {
         >
           <button
             style={{
-              background: isButtonClicked ? "#FFFFFF" : "#4F5D75",
-              color: isButtonClicked ? "#4F5D75" : "#FFFFFF",
+              background: isButtonClicked ? "#ffffff" : "#4f5d75",
+              color: isButtonClicked ? "#4f5d75" : "#ffffff",
               border: "none",
               fontWeight: "bold",
               padding: "10px 20px",
@@ -113,17 +138,18 @@ const CounterApp = () => {
               cursor: "pointer",
               transition: "background-color 0.3s, color 0.3s",
               border: "2px solid transparent",
-              outline: "2px solid #2D3142",
+              outline: "2px solid #2d3142",
               fontFamily: "'Arial', sans-serif",
             }}
             onClick={handleIncrement}
           >
+            <AiOutlineArrowUp style={{ marginRight: "5px" }} />
             Increment
           </button>
           <button
             style={{
-              background: "#2D3142",
-              color: "#FFFFFF",
+              background: "#2d3142",
+              color: "#ffffff",
               border: "none",
               fontWeight: "bold",
               padding: "10px 20px",
@@ -131,13 +157,25 @@ const CounterApp = () => {
               cursor: "pointer",
               transition: "background-color 0.3s",
               border: "2px solid transparent",
-              outline: "1px solid #EF8354",
+              outline: "1px solid #ef8354",
               fontFamily: "'Arial', sans-serif",
             }}
             onClick={handleReset}
           >
             Reset
           </button>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={autoIncrement}
+              onChange={() => setAutoIncrement(!autoIncrement)}
+            />
+            <label style={{ marginLeft: "5px" }}>Auto Increment</label>
+          </div>
+          <p style={{ fontSize: "0.8rem", color: "#777" }}>
+            Last Latency: {latency} ms
+          </p>
+          <AiOutlineSync style={{ fontSize: "2rem", color: "#2d3142" }} />
         </div>
       </div>
     </div>
