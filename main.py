@@ -1,9 +1,11 @@
-import aiohttp
 from aiohttp import web
 import asyncio
 from aiohttp_sse import sse_response
 import aiohttp_cors
 import json
+import os
+
+PORT = int(os.getenv("PORT", 5000))
 
 COUNT = 0
 
@@ -63,4 +65,4 @@ for route in list(app.router.routes()):
 
 
 if __name__ == '__main__':
-    web.run_app(app, port=5000)
+    web.run_app(app, port=PORT)
