@@ -113,7 +113,8 @@ const CounterApp = () => {
             margin: "1rem 0",
           }}
         >
-          {count}
+          {count} <span style={{ fontSize: "1rem", color: "#2d3142", fontWeight: "normal", alignSelf: "flex-end"
+            }}>+{latency}ms</span>
         </p>
         <div
           style={{
@@ -139,7 +140,7 @@ const CounterApp = () => {
             }}
             onClick={handleIncrement}
           >
-            <ArrowUpSquareFill size={14} style={{ marginRight: "5px", fill: isButtonClicked ? "#4f5d75" : "#ffffff" }} />
+            <ArrowUpSquareFill size={14} style={{ marginRight: "5px", marginTop: "5px", fill: isButtonClicked ? "#4f5d75" : "#ffffff" }} />
             Increment
           </button>
           <button
@@ -171,10 +172,7 @@ const CounterApp = () => {
               Auto Increment
             </label>
           </div>
-          <p style={{ fontSize: "0.8rem", color: "#777" }}>
-            Inc Latency: {latency} ms
-          </p>
-          <SendArrowUp size={30} style={{ color: "#2d3142", fill: "#2d3142" }} />
+          <SendArrowUp size={50} style={{ color: "#2d3142", fill: "#2d3142" }} />
         </div>
       </div>
     </div>
