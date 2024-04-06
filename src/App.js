@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowUp, ArrowRepeat } from 'react-bootstrap-icons';
+import { SendArrowUp, ArrowUpSquareFill } from 'react-bootstrap-icons';
 
 const CounterApp = () => {
   const [count, setCount] = useState(0);
@@ -24,12 +24,8 @@ const CounterApp = () => {
 
   const handleIncrement = () => {
     setIsButtonClicked(true);
-    fetch(`${BACK_END_URL}/api/increment`, {
-      method: "POST",
-    }).then(() => {
-      setIsButtonClicked(false);
-      updateLatency();
-    });
+    updateLatency();
+    setIsButtonClicked(false);
   };
 
   const handleReset = () => {
@@ -77,7 +73,7 @@ const CounterApp = () => {
   return (
     <div
       style={{
-        background: "#f8f9fa", // Changed background color
+        background: "#f8f9fa",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -143,7 +139,7 @@ const CounterApp = () => {
             }}
             onClick={handleIncrement}
           >
-            <ArrowUp size={20} style={{ marginRight: "5px" }} />
+            <ArrowUpSquareFill size={14} style={{ marginRight: "5px", fill: isButtonClicked ? "#4f5d75" : "#ffffff" }} />
             Increment
           </button>
           <button
@@ -169,16 +165,16 @@ const CounterApp = () => {
               type="checkbox"
               checked={autoIncrement}
               onChange={() => setAutoIncrement(!autoIncrement)}
-              style={{ transform: "scale(1.5)", marginRight: "5px" }}
+              style={{ transform: "scale(1.5)", marginRight: "5px", marginTop: "5px" }}
             />
             <label style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#2d3142" }}>
               Auto Increment
             </label>
           </div>
           <p style={{ fontSize: "0.8rem", color: "#777" }}>
-            Last Latency: {latency} ms
+            Inc Latency: {latency} ms
           </p>
-          <ArrowRepeat size={30} style={{ color: "#2d3142" }} />
+          <SendArrowUp size={30} style={{ color: "#2d3142", fill: "#2d3142" }} />
         </div>
       </div>
     </div>
