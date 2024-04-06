@@ -3,6 +3,7 @@ import {
   SendArrowUp,
   ArrowUpSquareFill,
   SymmetryVertical,
+  ArrowRepeat,
 } from "react-bootstrap-icons";
 
 const CounterApp = () => {
@@ -107,8 +108,8 @@ const CounterApp = () => {
             marginBottom: "20px",
           }}
         >
-          <SymmetryVertical size={25} style={{ color: "#2d3142" }} />
-          Synced Counter
+          <ArrowRepeat size={25} style={{ color: "#2d3142" }} />
+           Synced Counter
         </h1>
         <p
           style={{
@@ -123,17 +124,16 @@ const CounterApp = () => {
           }}
         >
           <span>{count}</span>
-          {latency && (
-            <span
-              style={{
-                fontSize: "1rem",
-                color: "#2d3142",
-                fontWeight: "normal",
-              }}
-            >
-              (+{latency}ms)
-            </span>
-          )}
+
+          <span
+            style={{
+              fontSize: "1rem",
+              color: "#2d3142",
+              fontWeight: "normal",
+            }}
+          >
+            (+{latency}ms)
+          </span>
         </p>
 
         <div
@@ -167,7 +167,7 @@ const CounterApp = () => {
               size={14}
               style={{
                 marginRight: "5px",
-                marginTop: "5px",
+                marginTop: "1px",
                 fill: isButtonClicked ? "#4f5d75" : "#ffffff",
               }}
             />
